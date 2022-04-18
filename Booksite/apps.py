@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class BooksiteConfig(AppConfig):
-    name = 'Booksite'
+    name = 'booksite'
