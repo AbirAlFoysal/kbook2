@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from flask_login import login_required
 from django.contrib.auth.models import User
-from .forms import register_user_form, UpdateProfileForm, PasswordChangingForm, UpdateProfilePageForm, profile_page_form
+from .forms import UpdateProfile, createprofile, PasswordChangingForm, usercreate, userupdtate
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import PasswordChangeView
@@ -17,8 +17,8 @@ from booksite.models import Profile,Post
 
 class CreateProfilePageView(CreateView):
 	model = Profile
-	form_class = profile_page_form
-	template_name = "registration/creat_user_profile_page.html"
+	form_class = createprofile
+	template_name = "registration/create_user_profile_page.html"
 	#fields = ['bio' ,'profile_pic', 'website_url', 'facebook_url', 'instagram_url']
 	#fields = '__all__'
 	
@@ -29,7 +29,7 @@ class CreateProfilePageView(CreateView):
 
 class EditProfilePageView(generic.UpdateView):
 	model = Profile
-	form_class = UpdateProfilePageForm
+	form_class = UpdateProfile
 	template_name = 'registration/edit_profile_page.html'  
 	#fields = ['bio' ,'profile_pic', 'website_url', 'facebook_url', 'instagram_url']
 	success_url = reverse_lazy('home')
@@ -56,7 +56,7 @@ class ShowProfilePageView(DetailView):
 
 
 class UserRegisterView(generic.CreateView):
-	form_class = register_user_form
+	form_class = usercreate
 	template_name = 'registration/registration.html'
 	success_url = reverse_lazy('login2')
 	#success_message = "User was created successfully"
@@ -82,7 +82,7 @@ def	login_user(request):
 		return render(request, 'registration/login2.html',{})		
 
 class UserEditView(generic.UpdateView):
-	form_class = UpdateProfileForm
+	form_class = userupdtate
 	template_name = 'registration/edit_profile.html'
 	success_url = reverse_lazy('home')
 	#success_message = "User was created successfully"

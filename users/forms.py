@@ -4,72 +4,75 @@ from django.contrib.auth.models import User
 from booksite.models import Profile
 
 
-class profile_page_form(forms.ModelForm):
-	profile_pic = forms.ImageField(required = False)
-	class Meta:
-		model = Profile
-		fields = ('bio' ,'profile_pic', 'website_url', 'facebook_url', 'instagram_url')
-		widgets = {
+class createprofile(forms.ModelForm):
+    profile_pic = forms.ImageField(required = False)
+    bio = forms.CharField(max_length=1500, required = False)
+    phone = forms.IntegerField(required = False)
+    website = forms.URLField(required = False)
+    facebook = forms.URLField(required = False)
+    instagram = forms.URLField(required = False)
+    college = forms.CharField(max_length=250, required = False)
+    school = forms.CharField(max_length=250, required = False)
 
-		'bio': forms.Textarea(attrs={'class': 'form-control'}),
+    
 
-		#'profile_pic': forms.TextInput(attrs={'class': 'form-control'}),
-		'website_url': forms.TextInput(attrs={'class': 'form-control'}),
-		'facebook_url': forms.TextInput(attrs={'class': 'form-control'}),
-		'instagram_url': forms.TextInput(attrs={'class': 'form-control'})}
-
-
-class register_user_form(UserCreationForm):
-	email = forms.EmailField(widget=forms.EmailInput(attrs={'class':"form-control"}))
-	first_name = forms.CharField(widget=forms.TextInput(attrs={'class':"form-control"}))
-	last_name = forms.CharField(widget=forms.TextInput(attrs={'class': "form-control"}))
-
-	'''class Meta:
-					model = User
-					fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
-			
-					widgets = {
-			
-					'username': forms.TextInput(attrs={'class':'form-control'}),
-					'password1': forms.TextInput(attrs={'class':'form-control'}),
-					'password2': forms.TextInput(attrs={'class':'form-control'}),
-					}'''
-	def __init__(self, *args, **kwargs):
-		super(UserCreationForm, self).__init__(*args, **kwargs)
-
-		self.fields['username'].widget.attrs['class'] = 'form-control'
-		self.fields['password1'].widget.attrs['class'] = 'form-control'
-		self.fields['password2'].widget.attrs['class'] = 'form-control'	
+    class Meta:
+        model = Profile
+        fields = ['bio',
+        'profile_pic',
+        'phone',
+        'website', 
+        'facebook', 
+        'instagram',
+        'college',
+        'school',
+        ]
 
 
-class UpdateProfileForm(UserChangeForm):
-	email = forms.EmailField(widget=forms.EmailInput(attrs={'class':"form-control"}))
-	first_name = forms.CharField(widget=forms.TextInput(attrs={'class':"form-control"}))
-	last_name = forms.CharField(widget=forms.TextInput(attrs={'class': "form-control"}))
-	username = forms.CharField(widget=forms.TextInput(attrs={'class':"form-control"}))
-	class Meta:
-		model = User
-		fields = ('username', 'first_name', 'last_name', 'email')
-			
-	'''def __init__(self, *args, **kwargs):
-					super(UserChangeForm,self).__init__(*args,**kwargs)
-			
-					self.fields['username'].widget.attrs['class'] = 'form-control'
-					self.fields['first_name'].widget.attrs['class'] = 'form-control'
-					self.fields['last_name'].widget.attrs['class'] = 'form-control'
-					self.fields['email'].widget.attrs['class'] = 'form-control'''
+class usercreate(UserCreationForm):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class':"form-control"}))
+    department = forms.CharField(max_length=6, required = True)
+    batch = forms.CharField(max_length=4, required = True)
+    hometown = forms.CharField(max_length=250, required = False)
+
+    class Meta:
+        model = User
+        fields = ['username', 'department','batch','hometown', 'email', 'password1', 'password2']
 
 
-class UpdateProfilePageForm(UserChangeForm):
-	bio = forms.CharField(widget=forms.Textarea(attrs={'class':"form-control"}))
-	profile_pic = forms.ImageField(required = False)
-	website_url = forms.CharField(widget=forms.TextInput(attrs={'class':"form-control"}), required = False)
-	facebook_url = forms.CharField(widget=forms.TextInput(attrs={'class': "form-control"}), required = False)
-	instagram_url = forms.CharField(widget=forms.TextInput(attrs={'class':"form-control"}), required = False)
-	class Meta:
-		model = User
-		fields = ('bio', 'website_url', 'facebook_url', 'instagram_url', 'profile_pic')
+class userupdtate(forms.ModelForm):
 
+    class Meta:
+        model = User
+        fields = ['username']
+
+
+
+class UpdateProfile(forms.ModelForm):
+    bio = forms.CharField(max_length=1500, required = False)
+    phone = forms.IntegerField(required = False)
+    website = forms.URLField(required = False)
+    facebook = forms.URLField(required = False)
+    instagram = forms.URLField(required = False)
+    college = forms.CharField(max_length=250, required = False)
+    school = forms.CharField(max_length=250, required = False)
+    batch = forms.CharField(max_length=4)
+
+
+    
+
+    class Meta:
+        model = Profile
+        fields = ['bio',
+        'profile_pic',
+        'phone',
+        'website', 
+        'facebook', 
+        'instagram',
+        'college',
+        'school',
+		'batch',
+        ]
 
 class PasswordChangingForm(PasswordChangeForm):
 

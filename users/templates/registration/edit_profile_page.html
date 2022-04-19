@@ -4,19 +4,25 @@
             Edit profile page 
 {% endblock %} 
 {% block content %}
+<div class="card" style="margin:auto; width:80%; padding:50px">
+
 {% if user.is_authenticated %}
 	{% if user.id == profile.user.id %}
 		<center><h1>Edit profile</h1></center>
 		<div class="form-goup">
+			<h2>{{user.username}}</h2>
+			<h5 class="text-muted">{{user.email}}</h5><br>
+			<div class="btn btn-outline-success"> <a  href="{% url 'edit_profile' %}"> Edit username </a></div>
+<hr>
 		<form method="POST" enctype="multipart/form-data"><!-- ecoder type allows to use images-->
 			{% csrf_token %}
 			
 			{{ form|crispy }}
-			<button class='btn btn-secondary'>Update profile page</button>
+			<br>
+			<button class='btn btn-secondary'>Update profile</button>
 		</div>
 <hr>
 
-<div class="btn btn-outline-warning"> <a  href="{% url 'edit_profile' %}"> Add more info </a></div>
 
 <br><br><br><br>
 	{% else %}
@@ -31,5 +37,6 @@
 	    
   You must be logged in.<a href="{% url 'login2' %}" class="alert-link">Login</a>
 </div></p>
+</div>
 {% endif %}
 {% endblock %}

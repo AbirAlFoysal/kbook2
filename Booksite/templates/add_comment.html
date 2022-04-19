@@ -4,6 +4,8 @@
             Add comment ...
 {% endblock %} 
 {% block content %}
+<div class="card" style="margin:auto; width:80%; padding:50px">
+
 <div style=" width: 60%; margin:auto; padding: 50px" class="border border-warning rounded-3"  >
 {% if user.is_authenticated %}
 <center><h1>Add to Comment</h1></center>
@@ -25,7 +27,7 @@
 	    
   You must be logged in.<a href="{% url 'login' %}" class="alert-link">Login</a>
 </p></div>
-
+</div>
 {% endif %}
 </div>
 {% endblock %}

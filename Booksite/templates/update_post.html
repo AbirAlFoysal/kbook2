@@ -3,6 +3,8 @@
             Edit blog post ...
 {% endblock %} 
 {% block content %}
+<div class="card" style="margin:auto; width:80%; padding:50px">
+
 {% if user.is_authenticated %}
 	{% if user.id == post.author.id %}
 		<center><h1>Post Editor</h1></center>
@@ -24,6 +26,6 @@
 	    
   You must be logged in.<a href="{% url 'login' %}" class="alert-link">Login</a>
 </div></p>
-
+</div>
 {% endif %}
 {% endblock %}

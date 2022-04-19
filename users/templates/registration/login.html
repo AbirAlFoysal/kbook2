@@ -4,6 +4,8 @@
             Login
 {% endblock %} 
 {% block content %}
+<div class="card" style="margin:auto; width:80%; padding:50px">
+
 <center><h1>Login</h1></center>
 <div class="form-goup">
 <form method="POST">
@@ -11,5 +13,5 @@
 	{{ form|crispy }}
 	<button class='btn btn-secondary'>Login</button>
 </div>
-
+</div>
 {% endblock %}

@@ -4,6 +4,8 @@
             Create a New blog post ...
 {% endblock %} 
 {% block content %}
+<div class="card" style="margin:auto; width:700px; padding:50px">
+
 {% if user.is_authenticated %}
 <center><h1>Add Post</h1></center>
 <div class="form-goup">
@@ -26,7 +28,7 @@
 	    
   You must be logged in.<a href="{% url 'login' %}" class="alert-link">Login</a>
 </div></p>
-
+</div>
 {% endif %}
 
 {% endblock %}
