@@ -11,7 +11,7 @@ from django.core.paginator import Paginator
 #	return render(request, 'home.html', {})
 
 class HomeView(ListView):
-	paginate_by = 4
+	paginate_by = 25
 	model = Post
 	template_name = 'home.html'
 	#ordering = ['-id']
